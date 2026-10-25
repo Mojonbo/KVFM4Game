@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://2vpnpn7q06n5"]
+
+[ext_resource type="Texture2D" uid="uid://dao27y3bl2r5d" path="res://01_scene/01_graphics_2d/COW01_D_1.png" id="1_kl2t2"]
+[ext_resource type="Shader" uid="uid://bkmefwr6jd1ro" path="res://globalassets_shaders/EXAMPLE_outline.gdshader" id="2_sr4d7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr4d7"]
+render_priority = 0
+shader = ExtResource("2_sr4d7")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.999999977648
+shader_parameter/highlight_strength = 0.0
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[resource]
+resource_name = "COW05_F_COW05_F_"
+next_pass = SubResource("ShaderMaterial_sr4d7")
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = ExtResource("1_kl2t2")

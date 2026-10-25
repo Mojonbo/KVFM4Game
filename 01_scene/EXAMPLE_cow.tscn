@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://couip4j4hcj0m"]
+
+[ext_resource type="Texture2D" uid="uid://ctv45yvspm0af" path="res://01_scene/01_graphics_2d/bg.png" id="1_fua8q"]
+[ext_resource type="Script" uid="uid://b1rocvj8stiw8" path="res://01_scene/EXAMPLE_cow.gd" id="1_kxj6f"]
+[ext_resource type="PackedScene" uid="uid://fhup07m14wfs" path="res://01_scene/01_graphics_3d/bigcow.fbx" id="2_jhe2g"]
+
+[sub_resource type="Animation" id="Animation_lhyb0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/bigcow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w3dqw"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/bigcow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpkgo"]
+_data = {
+&"RESET": SubResource("Animation_lhyb0"),
+&"spin": SubResource("Animation_w3dqw")
+}
+
+[node name="ExampleCow" type="Control" unique_id=636304459]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kxj6f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=553033467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fua8q")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2067696279]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.5
+offset_top = -303.5
+offset_right = 303.5
+offset_bottom = 303.5
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1454593786]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(607, 607)
+render_target_update_mode = 4
+
+[node name="bigcow" parent="SubViewportContainer/SubViewport" unique_id=1575540479 instance=ExtResource("2_jhe2g")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1638125458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.4912205)
+projection = 1
+current = true
+size = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1059965832]
+libraries/ = SubResource("AnimationLibrary_lpkgo")
+autoplay = &"spin"
